@@ -1,0 +1,200 @@
+
+/* =========================================
+   HERO CANVAS — ADVANCED 3D ORB
+   Futuristic • Animated • Glass Effect
+========================================= */
+
+.hero-canvas {
+  width: 100%;
+  height: 460px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* BACKGROUND GLOW */
+
+.hero-canvas::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(56, 103, 255, .25),
+    rgba(139, 92, 246, .08),
+    transparent 70%
+  );
+  filter: blur(35px);
+  animation: orbGlow 5s ease-in-out infinite;
+  z-index: -1;
+}
+
+/* MAIN 3D ORB */
+
+.hero-static-orb {
+  width: 220px;
+  height: 220px;
+  border-radius: 40%;
+  position: relative;
+  margin: auto;
+
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      #d8f5ff 0%,
+      #9bd4ff 12%,
+      #3268ed 48%,
+      #5c3eaa 78%,
+      #191b50 100%
+    );
+
+  box-shadow:
+    0 0 40px #326dff55,
+    0 0 100px #326dff55,
+    inset -20px -25px 50px rgba(10, 15, 65, .5),
+    inset 15px 15px 35px rgba(255, 255, 255, .25);
+
+  transform-style: preserve-3d;
+
+  animation:
+    orbFloat 6s ease-in-out infinite,
+    orbRotate 18s linear infinite;
+}
+
+/* INNER LIGHT REFLECTION */
+
+.hero-static-orb::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border-radius: 40%;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,.45),
+    transparent 35%,
+    rgba(110,231,255,.12) 70%,
+    transparent
+  );
+  filter: blur(5px);
+  animation: orbReflection 5s ease-in-out infinite alternate;
+}
+
+/* SHINING EFFECT */
+
+.hero-static-orb::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 40%;
+  border: 1px solid rgba(180, 220, 255, .4);
+  box-shadow:
+    0 0 25px rgba(110, 180, 255, .25),
+    inset 0 0 25px rgba(110, 180, 255, .15);
+}
+
+/* ORBIT RINGS */
+
+.hero-canvas {
+  --orbit-color: rgba(91, 140, 255, .45);
+}
+
+.hero-canvas .orb-ring {
+  position: absolute;
+  width: 350px;
+  height: 180px;
+  border: 1px solid var(--orbit-color);
+  border-radius: 50%;
+  transform: rotateX(65deg) rotateZ(-25deg);
+  pointer-events: none;
+}
+
+.hero-canvas .orb-ring:nth-child(2) {
+  width: 290px;
+  height: 350px;
+  transform: rotateY(65deg) rotateZ(25deg);
+  border-color: rgba(139, 92, 246, .4);
+}
+
+/* ANIMATIONS */
+
+@keyframes orbFloat {
+  0%, 100% {
+    transform: translateY(0) rotateX(8deg) rotateY(-8deg);
+  }
+  50% {
+    transform: translateY(-22px) rotateX(-8deg) rotateY(12deg);
+  }
+}
+
+@keyframes orbRotate {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes orbGlow {
+  0%, 100% {
+    transform: scale(.85);
+    opacity: .55;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+}
+
+@keyframes orbReflection {
+  from {
+    opacity: .45;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(8px);
+  }
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 800px) {
+  .hero-canvas {
+    height: 320px;
+  }
+
+  .hero-static-orb {
+    width: 155px;
+    height: 155px;
+  }
+
+  .hero-canvas::before {
+    width: 210px;
+    height: 210px;
+  }
+
+  .hero-canvas .orb-ring {
+    width: 260px;
+    height: 140px;
+  }
+
+  .hero-canvas .orb-ring:nth-child(2) {
+    width: 220px;
+    height: 270px;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  .hero-canvas *,
+  .hero-canvas::before,
+  .hero-static-orb {
+    animation: none !important;
+  }
+}

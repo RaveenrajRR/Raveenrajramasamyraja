@@ -1,0 +1,3 @@
+-- Admin access is enforced by the Express API using Supabase Auth + admin_users allowlist.
+-- Keep direct table writes unavailable to anon/authenticated clients. Server service-role access bypasses RLS.
+-- This file intentionally adds no broad authenticated policies. Add narrowly scoped policies only if direct client access is deliberately introduced.

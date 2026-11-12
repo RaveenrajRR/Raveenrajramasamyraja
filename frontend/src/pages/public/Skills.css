@@ -1,0 +1,295 @@
+
+/* =========================================
+   PAGE LAYOUT - NEON CYAN ANIMATIONS
+========================================= */
+
+.page-wrap {
+  --blue: #01eefe;
+  --muted: #a5adb9;
+  --line: rgba(1, 238, 254, 0.16);
+  --panel: #21242d;
+
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 86px 0 110px;
+  min-height: 65vh;
+
+  animation: pageFadeIn 0.8s ease both;
+}
+
+/* Page Intro */
+
+.page-intro {
+  max-width: 760px;
+  margin-bottom: 46px;
+
+  animation: introReveal 0.9s ease both;
+}
+
+.page-intro h1 {
+  font-size: clamp(2.8rem, 7vw, 5.6rem);
+  line-height: 1.02;
+  letter-spacing: -.055em;
+  margin: 18px 0;
+
+  color: #ffffff;
+
+  animation: headingReveal 1s ease both;
+}
+
+.page-intro h1 span,
+.page-intro h1 em {
+  color: #01eefe;
+
+  text-shadow:
+    0 0 12px rgba(1, 238, 254, 0.25),
+    0 0 28px rgba(1, 238, 254, 0.12);
+
+  transition: text-shadow 0.3s ease;
+}
+
+.page-intro h1 span:hover,
+.page-intro h1 em:hover {
+  text-shadow:
+    0 0 15px rgba(1, 238, 254, 0.7),
+    0 0 35px rgba(1, 238, 254, 0.4);
+}
+
+.page-intro p,
+.content-panel p {
+  color: #a5adb9;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.page-intro p {
+  animation: paragraphReveal 1.1s ease both;
+}
+
+/* Content Panel */
+
+.content-panel {
+  position: relative;
+  overflow: hidden;
+
+  padding: 32px;
+
+  border: 1px solid rgba(1, 238, 254, 0.16);
+  border-radius: 20px;
+
+  background: linear-gradient(
+    145deg,
+    #292e39,
+    #21242d
+  );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  animation: panelReveal 1s cubic-bezier(.2,.8,.2,1) both;
+
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* Animated Cyan Border Light */
+
+.content-panel::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: -100%;
+
+  width: 100%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #01eefe,
+    #ffffff,
+    #01eefe,
+    transparent
+  );
+
+  animation: borderShine 4s linear infinite;
+}
+
+/* Soft Neon Glow */
+
+.content-panel::after {
+  content: "";
+
+  position: absolute;
+  top: -100px;
+  right: -100px;
+
+  width: 220px;
+  height: 220px;
+
+  border-radius: 50%;
+
+  background: rgba(1, 238, 254, 0.12);
+  filter: blur(75px);
+
+  pointer-events: none;
+
+  animation: glowFloat 5s ease-in-out infinite alternate;
+}
+
+/* Panel Hover */
+
+.content-panel:hover {
+  transform: translateY(-6px);
+
+  border-color: rgba(1, 238, 254, 0.55);
+
+  box-shadow:
+    0 25px 55px rgba(0, 0, 0, 0.35),
+    0 0 25px rgba(1, 238, 254, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes introReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes headingReveal {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes paragraphReveal {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes panelReveal {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes borderShine {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes glowFloat {
+  from {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translate(-35px, 30px);
+    opacity: 1;
+  }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+  .page-wrap {
+    padding: 70px 0 90px;
+  }
+
+  .content-panel {
+    padding: 26px;
+  }
+
+  .page-intro {
+    margin-bottom: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-wrap {
+    width: calc(100% - 32px);
+    padding: 60px 0 75px;
+  }
+
+  .content-panel {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .page-intro p,
+  .content-panel p {
+    font-size: 0.96rem;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .page-wrap,
+  .page-intro,
+  .page-intro h1,
+  .page-intro p,
+  .content-panel,
+  .content-panel::before,
+  .content-panel::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,2 @@
+import { Link } from 'react-router-dom';
+export default function Footer(){return <footer className="footer"><div><strong>RAVEEN<span>.</span></strong><p>Building thoughtful digital experiences.</p></div><div className="footer-links"><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link><Link to="/contact">Contact</Link></div><small>© {new Date().getFullYear()} Raveen Raj. All rights reserved.</small></footer>}

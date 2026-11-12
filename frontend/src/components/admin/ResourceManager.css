@@ -1,0 +1,169 @@
+.resource-manager h1 {
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  letter-spacing: -0.05em;
+  margin: 12px 0;
+}
+.resource-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+}
+.resource-heading p {
+  color: var(--muted);
+}
+.resource-count {
+  border: 1px solid var(--line);
+  padding: 9px 13px;
+  border-radius: 99px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.resource-form {
+  margin: 28px 0;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--panel);
+}
+.resource-form h2 {
+  margin-top: 0;
+}
+.resource-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+.resource-fields label {
+  display: grid;
+  gap: 8px;
+  color: #dce5f6;
+  font-size: 13px;
+}
+.resource-fields input:not([type="checkbox"]),
+.resource-fields textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #080d19;
+  color: white;
+}
+.resource-fields input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #598cff;
+}
+.resource-actions,
+.row-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+.resource-table-wrap {
+  overflow: auto;
+  margin-top: 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.resource-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+.resource-table th,
+.resource-table td {
+  text-align: left;
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.resource-table th {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.resource-table td {
+  font-size: 13px;
+  color: #c7d2e8;
+}
+.resource-table td small {
+  display: block;
+  color: var(--muted);
+  margin-top: 5px;
+}
+.row-actions button {
+  background: none;
+  border: 0;
+  color: var(--blue);
+  cursor: pointer;
+}
+.row-actions button.danger {
+  color: #ff8d9a;
+}
+.form-success {
+  color: #83e7b2;
+}
+@media (max-width: 650px) {
+  .resource-fields {
+    grid-template-columns: 1fr;
+  }
+  .resource-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+}
+/* Resource Manager Select Dropdown */
+
+.resource-fields select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #080d19;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.resource-fields select:focus {
+  border-color: #598cff;
+  box-shadow: 0 0 0 3px rgba(89, 140, 255, 0.15);
+}
+
+.resource-fields select option {
+  background: #080d19;
+  color: white;
+  padding: 10px;
+}
+
+/* Input and Textarea Focus */
+
+.resource-fields input:not([type=checkbox]):focus,
+.resource-fields textarea:focus {
+  outline: none;
+  border-color: #598cff;
+  box-shadow: 0 0 0 3px rgba(89, 140, 255, 0.15);
+}
+
+/* Disabled Button */
+
+.resource-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mobile Responsive */
+
+@media (max-width: 650px) {
+  .resource-form {
+    padding: 18px;
+  }
+
+  .resource-fields select {
+    font-size: 14px;
+  }
+}

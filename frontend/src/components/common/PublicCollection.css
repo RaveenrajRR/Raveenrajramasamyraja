@@ -1,0 +1,585 @@
+
+/* =========================================
+   PUBLIC COLLECTION
+   Dark Charcoal + Neon Cyan
+   Premium Animation Edition
+   Responsive • Glassmorphism • 3D Effects
+========================================= */
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  width: 100%;
+  align-items: stretch;
+  perspective: 1200px;
+}
+
+/* =========================================
+   COLLECTION CARD
+========================================= */
+
+.dynamic-card {
+  --cyan: #01eefe;
+  --card-bg: #21242d;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background: linear-gradient(
+    145deg,
+    #292e39,
+    #21242d 65%,
+    #1b2029
+  );
+
+  border: 1px solid rgba(1, 238, 254, 0.13);
+  border-radius: 20px;
+
+  box-shadow:
+    0 14px 35px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+  opacity: 0;
+  animation: collectionCardReveal 0.8s cubic-bezier(.2,.8,.2,1) forwards;
+  animation-delay: calc(var(--card-index, 0) * 120ms);
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 0.45s cubic-bezier(.2,.8,.2,1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    background 0.4s ease;
+}
+
+/* Neon top light */
+
+.dynamic-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  z-index: 5;
+
+  width: 120%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #01eefe,
+    #ffffff,
+    #01eefe,
+    transparent
+  );
+
+  transition: left 0.8s ease;
+}
+
+/* Neon ambient glow */
+
+.dynamic-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(1, 238, 254, 0.12),
+    transparent 65%
+  );
+
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.dynamic-card:hover::before {
+  left: 120%;
+}
+
+.dynamic-card:hover::after {
+  opacity: 1;
+}
+
+.dynamic-card:hover {
+  transform: translateY(-10px) scale(1.015);
+
+  border-color: rgba(1, 238, 254, 0.65);
+
+  box-shadow:
+    0 25px 55px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(1, 238, 254, 0.13),
+    inset 0 0 20px rgba(1, 238, 254, 0.025);
+}
+
+/* =========================================
+   CARD IMAGE
+========================================= */
+
+.dynamic-card-image {
+  position: relative;
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+
+  background: #171b22;
+}
+
+.dynamic-card-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    180deg,
+    transparent 40%,
+    rgba(20, 24, 32, 0.55)
+  );
+
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.dynamic-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transform: scale(1.01);
+
+  animation: imageInitialReveal 1s ease both;
+
+  transition:
+    transform 0.8s cubic-bezier(.2,.8,.2,1),
+    filter 0.5s ease;
+}
+
+.dynamic-card:hover .dynamic-card-image img {
+  transform: scale(1.12);
+  filter: saturate(1.2) brightness(1.08);
+}
+
+/* Image light sweep */
+
+.dynamic-card-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  z-index: 2;
+
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(
+    110deg,
+    transparent,
+    rgba(255,255,255,0.13),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  transition: left 0.8s ease;
+}
+
+.dynamic-card:hover .dynamic-card-image::before {
+  left: 150%;
+}
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.dynamic-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  flex: 1;
+  padding: 25px;
+  min-width: 0;
+}
+
+/* Eyebrow */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+
+  max-width: 100%;
+  padding: 7px 12px;
+
+  color: #01eefe;
+  background: rgba(1, 238, 254, 0.08);
+
+  border: 1px solid rgba(1, 238, 254, 0.2);
+  border-radius: 30px;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  overflow-wrap: anywhere;
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.dynamic-card:hover .eyebrow {
+  background: rgba(1, 238, 254, 0.14);
+  box-shadow: 0 0 15px rgba(1, 238, 254, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Heading */
+
+.dynamic-card h2 {
+  margin: 18px 0 12px;
+
+  color: #ffffff;
+
+  font-size: 1.35rem;
+  font-weight: 750;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+
+  transition:
+    color 0.35s ease,
+    transform 0.35s ease;
+}
+
+.dynamic-card:hover h2 {
+  color: #01eefe;
+  transform: translateX(4px);
+}
+
+/* Description */
+
+.dynamic-card p {
+  margin: 0 0 18px;
+
+  color: #a5adb9;
+
+  font-size: 0.93rem;
+  line-height: 1.8;
+
+  overflow-wrap: anywhere;
+
+  transition: color 0.35s ease;
+}
+
+.dynamic-card:hover p {
+  color: #c1ccd6;
+}
+
+/* =========================================
+   TECHNOLOGY TAGS
+========================================= */
+
+.dynamic-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-top: auto;
+  padding-top: 5px;
+}
+
+.dynamic-card-tags span {
+  padding: 6px 10px;
+
+  color: #b8c5ce;
+  background: rgba(255, 255, 255, 0.045);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 7px;
+
+  font-size: 0.73rem;
+
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.dynamic-card-tags span:hover {
+  color: #01eefe;
+  background: rgba(1, 238, 254, 0.1);
+  border-color: rgba(1, 238, 254, 0.35);
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 4px 12px rgba(1, 238, 254, 0.08);
+}
+
+/* =========================================
+   CARD LINKS
+========================================= */
+
+.dynamic-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-top: 22px;
+
+  color: #01eefe;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+
+  transition:
+    gap 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.dynamic-card-link span {
+  display: inline-block;
+  font-size: 1.1rem;
+
+  transition: transform 0.3s ease;
+}
+
+.dynamic-card-link:hover {
+  gap: 14px;
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.dynamic-card-link:hover span {
+  transform: translate(4px, -4px);
+}
+
+/* =========================================
+   LOADING / EMPTY / ERROR STATES
+========================================= */
+
+.collection-state {
+  width: 100%;
+  min-height: 180px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  padding: 30px;
+
+  background: #21242d;
+  border: 1px solid rgba(1, 238, 254, 0.12);
+  border-radius: 18px;
+
+  text-align: center;
+
+  animation: collectionCardReveal 0.7s ease both;
+}
+
+.collection-state .muted {
+  margin: 0;
+  color: #a5adb9;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.collection-error {
+  border-color: rgba(255, 100, 100, 0.25);
+}
+
+.collection-empty-icon {
+  color: #01eefe;
+  font-size: 2.3rem;
+
+  text-shadow: 0 0 20px rgba(1, 238, 254, 0.35);
+
+  animation: emptyIconFloat 3s ease-in-out infinite;
+}
+
+/* Loading Spinner */
+
+.collection-loader {
+  width: 36px;
+  height: 36px;
+
+  border: 3px solid rgba(1, 238, 254, 0.15);
+  border-top-color: #01eefe;
+  border-radius: 50%;
+
+  box-shadow: 0 0 15px rgba(1, 238, 254, 0.1);
+
+  animation: collectionSpin 0.8s linear infinite;
+}
+
+/* =========================================
+   KEYFRAME ANIMATIONS
+========================================= */
+
+/* Card entrance */
+
+@keyframes collectionCardReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(45px) scale(0.94);
+    filter: blur(5px);
+  }
+
+  70% {
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Image entrance */
+
+@keyframes imageInitialReveal {
+  from {
+    opacity: 0.5;
+    transform: scale(1.08);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+}
+
+/* Loading spinner */
+
+@keyframes collectionSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Empty icon */
+
+@keyframes emptyIconFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .collection-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .dynamic-card-content {
+    padding: 22px;
+  }
+
+  .dynamic-card:hover {
+    transform: translateY(-6px);
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .collection-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .dynamic-card {
+    border-radius: 17px;
+  }
+
+  .dynamic-card-image {
+    height: 220px;
+  }
+
+  .dynamic-card-content {
+    padding: 21px;
+  }
+
+  .dynamic-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .dynamic-card p {
+    font-size: 0.9rem;
+  }
+
+  .dynamic-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .collection-state {
+    min-height: 150px;
+    padding: 22px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+  .dynamic-card-image {
+    height: 185px;
+  }
+
+  .dynamic-card-content {
+    padding: 17px;
+  }
+
+  .dynamic-card h2 {
+    font-size: 1.1rem;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .dynamic-card,
+  .dynamic-card *,
+  .collection-state,
+  .collection-loader,
+  .collection-empty-icon {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .dynamic-card {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
